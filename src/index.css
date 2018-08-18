@@ -1,0 +1,22 @@
+.gameContainer {
+    font-size: 20px;
+    border-width: 1px;
+    border-color: tomato;
+    display: flex;
+    flex-direction: row;
+}
+
+.boardContainer {
+    border-width: 1px;
+    border-color: rebeccapurple;
+}
+
+.infoContainer {
+    margin-left: 16px;
+    border-width: 1px;
+    border-color: turquoise;
+}
+
+.infoContainer li {
+    list-style-type: none;
+}
