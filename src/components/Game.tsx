@@ -43,7 +43,7 @@ export default class Game extends React.Component<GameIProps, GameIState>
                         {
                             !this.checkWinner(currentSquares.squares)
                             ? <span>Next Player: {this.state.isNext ? 'X' : 'O'}</span> 
-                            : <span>"Winner Player: {this.state.isNext ? 'O' : 'X'}"</span>
+                            : <span>Winner Player: {this.state.isNext ? 'O' : 'X'}</span>
                         }
                         {
                             currentHistory.map((value, index) => {
