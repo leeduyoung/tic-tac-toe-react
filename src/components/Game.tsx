@@ -30,8 +30,7 @@ export default class Game extends React.Component<GameIProps, GameIState>
     {
         const currentHistory = this.state.history;
         const currentSquares = currentHistory[this.state.step];
-        console.log(this.state);
-        console.log('currentHistory: ', currentHistory);
+        const winner: string = this.checkWinner(currentSquares.squares);
 
         return (
             <div className="gameContainer">
@@ -41,9 +40,9 @@ export default class Game extends React.Component<GameIProps, GameIState>
                 <div className="infoContainer">
                     <ul>
                         {
-                            !this.checkWinner(currentSquares.squares)
+                            !winner
                             ? <span>Next Player: {this.state.isNext ? 'X' : 'O'}</span> 
-                            : <span>Winner Player: {this.state.isNext ? 'O' : 'X'}</span>
+                            : <span>Winner Player: {winner}</span>
                         }
                         {
                             currentHistory.map((value, index) => {
@@ -71,6 +70,7 @@ export default class Game extends React.Component<GameIProps, GameIState>
 
         const addSquares = [...currentSquares];
         addSquares[index] = this.state.isNext ? 'X' : 'O';
+
         this.setState({
             history: this.state.history.slice(0, this.state.step + 1).concat([{squares: addSquares}]),
             step: this.state.step + 1,
@@ -86,7 +86,7 @@ export default class Game extends React.Component<GameIProps, GameIState>
         });
     }
 
-    private checkWinner(currentSquares: Array<string>): boolean
+    private checkWinner(currentSquares: Array<string>): string
     {
         const lines = 
         [
@@ -99,9 +99,9 @@ export default class Game extends React.Component<GameIProps, GameIState>
             const [a,b,c] = line;
             if(currentSquares[a] && currentSquares[a] === currentSquares[b] && currentSquares[a] === currentSquares[c])
             {
-                return true;
+                return currentSquares[a];
             }
         }
-        return false;
+        return null;
     }
 }
